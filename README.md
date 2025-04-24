@@ -2,7 +2,10 @@
 
 run docker with:
 
+
 docker-compose build
+
 docker-compose up
 
-and open http://localhost:8080
+
+and open http://localhost:3000
