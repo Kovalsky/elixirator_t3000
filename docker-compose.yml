@@ -4,7 +4,8 @@ version: '3.8'
 services:
   web:
     build: .
-    command: ./bin/rails server -p 3000 -b 0.0.0.0
+    command: >
+      sh -c "bin/rails tailwindcss:install && bin/rails server -b 0.0.0.0 -p 3000"
     environment:
       - RAILS_ENV=development
       - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
