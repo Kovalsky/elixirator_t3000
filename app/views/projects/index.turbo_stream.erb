@@ -1,0 +1,14 @@
+<%= turbo_stream.append "projects-list" do %>
+  <%= render partial: "project", collection: @projects, as: :project %>
+<% end %>
+
+<%= turbo_stream.update "pagination-loader" do %>
+  <% if @pagy.next %>
+    <%= turbo_frame_tag "pagination-loader", data: { controller: "infinity-scroll" } do %>
+      <%= link_to projects_path(page: @pagy.next, format: :turbo_stream),
+                  data: { turbo_frame: "_top", infinity_scroll_target: "loadMore" } do %>
+        Loading more...
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

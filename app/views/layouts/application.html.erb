@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Elixirator Tt" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="min-h-screen bg-[#1e1e1e] text-[#d4d4d4] font-mono antialiased flex flex-col">
+
+      <!-- Header -->
+      <header class="bg-[#252526] border-b border-[#333] shadow-sm">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 class="text-xl font-semibold text-[#569cd6] tracking-tight">
+            <%= link_to "Elixirator TT", root_path, class: "hover:underline" %>
+          </h1>
+        </div>
+      </header>
+
+      <!-- Flash -->
+      <% flash.each do |type, message| %>
+        <div class="max-w-3xl mx-auto px-4 py-3 mt-4 bg-[#333333] text-[#dcdcaa] rounded border border-[#444] shadow">
+          <%= message %>
+        </div>
+      <% end %>
+
+      <!-- Main content -->
+      <main class="flex-grow">
+        <div class="max-w-3xl mx-auto px-6 py-10 bg-[#1e1e1e] rounded-xl shadow-lg border border-[#2d2d2d] mt-8">
+          <%= yield %>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="text-center text-xs text-[#808080] py-6">
+        &copy; <%= Time.current.year %> Bohdan Bondar Elixirator T3000
+      </footer>
+
+    </body>
+</html>

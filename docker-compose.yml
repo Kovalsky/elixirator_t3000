@@ -1,0 +1,19 @@
+
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: ./bin/rails server -p 3000 -b 0.0.0.0
+    environment:
+      - RAILS_ENV=development
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+    volumes:
+      - .:/rails
+      - bundle_cache:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    restart: on-failure
+
+volumes:
+  bundle_cache:

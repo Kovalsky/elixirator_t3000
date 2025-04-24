@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "project-#{project_id}-tasks" do %>
+  <div class="bg-[#1b1b1b] border-t border-[#333] px-4 py-2 space-y-2">
+    <% @tasks.each do |task| %>
+      <div class="text-sm text-[#9cdcfe]"><%= task.title %></div>
+    <% end %>
+  </div>
+<% end %>
